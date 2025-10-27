@@ -2,6 +2,8 @@
 Previsao Energia.odt
 Previsao Energia.pdf
 .codebasenotes-annotations.json
+.conda
+.vscode
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
