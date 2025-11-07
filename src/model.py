@@ -29,10 +29,16 @@ def linearRegression_model(input, target, cv, scoring: str):
     return metrics, preds, target
 
 # Utilizando LInera Regression
-def randomForest_model(input, target, cv, scoring: str):
+def randomForest_model(input, target, cv, scoring: str, random_state, verbose):
     model = RandomForestRegressor()
-    param_grid = {}  # LinearRegression não tem hiperparâmetros relevantes aqui
-    grid_search = GridSearchCV(model, param_grid, cv=cv, scoring=scoring)
+    param_grid = dict(
+        n_estimators=[100], #50, 200
+        criterion=['squared_error'],
+        min_samples_split=[2], #5,10
+        min_samples_leaf = [1], #2,3
+        random_state = [random_state],
+        verbose = [verbose])
+    grid_search = GridSearchCV(model, param_grid=param_grid, cv=cv, scoring=scoring)
     grid_search.fit(input, target)
 
     preds = grid_search.predict(input)
