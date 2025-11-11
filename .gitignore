@@ -5,6 +5,7 @@ Previsao Energia.pdf
 .conda
 .vscode
 info.md
+reports/model/randomForest_model.joblib
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
