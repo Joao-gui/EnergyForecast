@@ -53,7 +53,7 @@ def randomForest_model(input, target, cv, scoring: str, random_state, verbose):
         "RMSE": np.sqrt(mean_squared_error(target, preds))
     }
     
-    return metrics, preds, target
+    return metrics, preds, target, grid_search.best_estimator_
 
 # Salvando modelo no arquivo reports/model
 def save_model(model, filename, folder='../reports/model'):

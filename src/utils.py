@@ -40,13 +40,15 @@ def plot_eda(df, year, figures_path='../reports/figures', data_path='../data/pro
         print(f' -> {data_path}/AEP_{year}.csv')
 
 # Plot Gráfico de avaliação de modelo de regressão
-def plot_regressor_model_ultils(pred, target, title: str):
+def plot_regressor_model_ultils(pred, target, title: str, xlabel: str, ylabel: str):
         df_temp = pd.DataFrame({'Desejado': target, 'Estimado': pred}) # Criação de um dataframe com os dados desejados e os estimados na predição
         df_temp = df_temp.head(60) # Armazena a quantidade de elementos a serem apresentados no gráfico, pois pode ser visualmente difícil de abstrair caso tenham muitas informações
         ax = df_temp.plot(kind='bar',figsize=(10,6)) # Configuração do tipo de gráfico 'bar' e tamanho da figura
         fig = ax.get_figure()
         plt.grid(which='major', linestyle='-', linewidth='0.5', color='gray') # Configuração do grid do gráfico
         plt.grid(which='minor', linestyle=':', linewidth='0.5', color='blue') # Configuração do grid do gráfico
+        plt.xlabel(f'{xlabel}')
+        plt.ylabel(f'{ylabel}')
         plt.title(f'{title}')
         plt.show() # Apresenta o gráfico comparando o desejado e o estimado pelo modelo neural
 
