@@ -4,6 +4,9 @@ from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 import numpy as np
+import joblib
+import os
+import json
 
 # Condfigurando o KFold para o cross validation
 def kfold_model (n_splits, random_state):
@@ -51,3 +54,25 @@ def randomForest_model(input, target, cv, scoring: str, random_state, verbose):
     }
     
     return metrics, preds, target
+
+# Salvando modelo no arquivo reports/model
+def save_model(model, filename, folder='../reports/model'):
+    os.makedirs(folder, exist_ok=True)
+    filepath = os.path.join(folder, f"{filename}.joblib")
+    joblib.dump(model, filepath)
+    print(f"Modelo salvo em {filepath}")
+
+    return
+
+# Salvando métrica do modelo no arquivo reports/metrics
+def save_metrics(metrics: dict, filename: str, folder='../reports/metrics'):
+    os.makedirs(folder, exist_ok=True)
+    filepath = os.path.join(folder, f"{filename}.json")
+
+    # Abre o arquivo e escre o dict no .json
+    with open(filepath, 'w') as f:
+        json.dump(metrics, f, indent=4)
+
+    print(f'Metrics salvas em {filepath}')
+
+    return
