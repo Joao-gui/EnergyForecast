@@ -6,6 +6,7 @@ Previsao Energia.pdf
 .vscode
 info.md
 reports/model/*.joblib
+*.joblib
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
