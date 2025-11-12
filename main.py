@@ -18,11 +18,11 @@ MODEL_PATH = "reports/model/randomForest_model.joblib"
 model = load(MODEL_PATH)
 print("Modelo carregado com sucesso!")
 
-# Carregar novos dados em data/processed
+# Carregar novos dados para testar modelo de data/processed
 df = pd.read_csv('data/processed/AEP_2010.csv')
 df['Datetime'] = pd.to_datetime(df['Datetime'])
 
-# Pré-Processamento
+# Pré-Processamento do dataframe
 df['year'] = df['Datetime'].dt.year
 df['month'] = df['Datetime'].dt.month
 df['day'] = df['Datetime'].dt.day
@@ -30,6 +30,7 @@ df['hour'] = df['Datetime'].dt.hour
 df['dayofweek'] = df['Datetime'].dt.dayofweek
 df['is_weekend'] = (df['Datetime'].dt.dayofweek >= 5).astype(int)
 
+# Separando Target de Prediction
 X = df[['year', 'month', 'day', 'hour', 'dayofweek', 'is_weekend']]
 y = df['AEP_MW']
 
@@ -38,7 +39,7 @@ y_pred = model.predict(X)
 df['prediction'] = y_pred
 print('Previsões geradas com sucesso!')
 
-# Calcular métricas e salvando em reports/metrics
+# Calcular métricas e salvando em reports/final/final_metrics.json
 if "AEP_MW" in df.columns:
     metrics = {
         "R2": r2_score(y, y_pred),
@@ -50,22 +51,23 @@ if "AEP_MW" in df.columns:
     for name, value in metrics.items():
         print(f'{name}: {value}')
 
-    # Salvando as métricas
+    # Salvando as métricas e verificando se a pasta reports/final existe, se não ele cria
     folder = 'reports/final'
     os.makedirs(folder, exist_ok=True)
     filepath = os.path.join(folder, "final_metrics.json")
 
-    # Abre o arquivo e escre o dict no .json
+    # Abre o arquivo e escreve o dict no .json
     with open(filepath, 'w') as f:
         json.dump(metrics, f, indent=4)
 
     print(f'Metrics salvas em {filepath}')
 
-# Salvando previsões
+# Salvando previsões em reports/final/predictions.csv
+# A pasta já foi verificada se existe ou não no processo anterior, com isso só será salvo o arquivo
 df.to_csv("reports/final/predictions.csv", index=False)
 print('Previsões salvas em reports/final')
 
-# Gerando plot salvando
+# Gerando plot salvando em reports/final/finalGraphic.png
 df_temp = pd.DataFrame({'Desejado': y, 'Estimado': y_pred}) # Criação de um dataframe com os dados desejados e os estimados na predição
 df_temp = df_temp.head(40) # Armazena a quantidade de elementos a serem apresentados no gráfico, pois pode ser visualmente difícil de abstrair caso tenham muitas informações
 ax = df_temp.plot(kind='bar',figsize=(10,6)) # Configuração do tipo de gráfico 'bar' e tamanho da figura
