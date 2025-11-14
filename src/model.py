@@ -1,8 +1,8 @@
 from sklearn.model_selection import KFold, GridSearchCV
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
-from xgboost import XGBRegressor
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
+from sklearn.compose import TransformedTargetRegressor
 import numpy as np
 import joblib
 import os
@@ -15,7 +15,8 @@ def kfold_model (n_splits, random_state):
 
 # Utilizando LInera Regression
 def linearRegression_model(input, target, cv, scoring: str):
-    model = LinearRegression()
+    # Transformação logarítmica e depois volta com exponencial com o TransformedTargerRegressor
+    model = TransformedTargetRegressor(regressor=LinearRegression(), func=np.log1p, inverse_func=np.expm1)
     param_grid = {}  # LinearRegression não tem hiperparâmetros relevantes aqui
     grid_search = GridSearchCV(model, param_grid, cv=cv, scoring=scoring)
     grid_search.fit(input, target)
@@ -33,7 +34,8 @@ def linearRegression_model(input, target, cv, scoring: str):
 
 # Utilizando LInera Regression
 def randomForest_model(input, target, cv, scoring: str, random_state, verbose):
-    model = RandomForestRegressor()
+    # Transformação logarítmica e depois volta com exponencial com o TransformedTargerRegressor
+    model = TransformedTargetRegressor(regressor=RandomForestRegressor(), func=np.log1p, inverse_func=np.expm1)
     param_grid = dict(
         n_estimators=[100], #50, 200
         criterion=['squared_error'],
