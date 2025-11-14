@@ -1,10 +1,6 @@
 # Projeto: Aprendizado de máquinas e séries temporais para prever o consumo de energia elétrica nas próximas horas ou dias.
 
----
-
 ## Descrição Projeto
-
----
 
 Este projeto tem como objetivo **prever o consumo de energia elétrica** nas horas e dias seguintes, utilizando **modelos de apredizado de máquina** aplicados a **séries temporais**.
 
@@ -17,8 +13,6 @@ O foco principal é explorar e comparar diferentes abordagens de regressão, ana
 ---
 
 ## Metodologia
-
----
 
 O projeto foi dividido em etapas:
 
@@ -49,8 +43,6 @@ O projeto foi dividido em etapas:
 
 ## Resultados Obtidos
 
----
-
 | **Modelo**  | **R²** | **MAE** | **MSE** | **RMSE** |
 | ----------------- | ------------- | ------------- | ------------- | -------------- |
 | Regressão LInear | 0.2984        | 1754          | 4.71e6        | 2170           |
@@ -61,8 +53,6 @@ O modelo **Random Forest** apresentou desempenho significativamente superior, ca
 ---
 
 ## Estrutura do Projeto
-
----
 
 Os modelos gŕaficos gerados durante o experimento são automaticamente salvos em diretórios:
 
@@ -107,8 +97,6 @@ EnergyForecast/
 
 ## Executando o Projeto
 
----
-
 Clone o repositório:
 
 ```
@@ -137,23 +125,17 @@ O script fará o carregamento dos dados, executará as etapas de pré-processame
 
 ## Licença
 
----
-
 Este projeto está disponível sob a **MIT License** - veja o arquivo `LICENSE` para mais detalhes.
 
 ---
 
 ## Agradecimentos
 
----
-
 Este é um projeto de estudo e exploração, foi feito para por em prática alguns conhecimentos adquiridos no curso de **Inteligência Artificial,** pela **UTFPR,** livros e artigos sobre o tema. Projeto simples porém com bastante conhecimento agregado, desde no processo de exploração, pré-processamento e modelagem.
 
 ---
 
 ## Autor
-
----
 
 **João Guilherme Pellacani** - Engenheiro Elétrico com foco em Inteligência Artificial.
 
