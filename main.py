@@ -4,6 +4,8 @@ from joblib import load
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 import json
 import matplotlib.pyplot as plt
+from src.features import prepare_feature
+from src.utils import plot_regressor_model_ultils
 
 # Import para visualizar as pastas
 import os
@@ -20,15 +22,9 @@ print("Modelo carregado com sucesso!")
 
 # Carregar novos dados para testar modelo de data/processed
 df = pd.read_csv('data/processed/AEP_2010.csv')
-df['Datetime'] = pd.to_datetime(df['Datetime'])
 
 # Pré-Processamento do dataframe
-df['year'] = df['Datetime'].dt.year
-df['month'] = df['Datetime'].dt.month
-df['day'] = df['Datetime'].dt.day
-df['hour'] = df['Datetime'].dt.hour
-df['dayofweek'] = df['Datetime'].dt.dayofweek
-df['is_weekend'] = (df['Datetime'].dt.dayofweek >= 5).astype(int)
+df = prepare_feature(df)
 
 # Separando Target de Prediction
 X = df[['year', 'month', 'day', 'hour', 'dayofweek', 'is_weekend']]
@@ -68,16 +64,7 @@ df.to_csv("reports/final/predictions.csv", index=False)
 print('Previsões salvas em reports/final')
 
 # Gerando plot salvando em reports/final/finalGraphic.png
-df_temp = pd.DataFrame({'Desejado': y, 'Estimado': y_pred}) # Criação de um dataframe com os dados desejados e os estimados na predição
-df_temp = df_temp.head(40) # Armazena a quantidade de elementos a serem apresentados no gráfico, pois pode ser visualmente difícil de abstrair caso tenham muitas informações
-ax = df_temp.plot(kind='bar',figsize=(10,6)) # Configuração do tipo de gráfico 'bar' e tamanho da figura
-fig = ax.get_figure()
-plt.grid(which='major', linestyle='-', linewidth='0.5', color='gray') # Configuração do grid do gráfico
-plt.grid(which='minor', linestyle=':', linewidth='0.5', color='blue') # Configuração do grid do gráfico
-plt.xlabel('Amostras')
-plt.ylabel('AEP_MW')
-plt.title('Gráfico Final')
-plt.show()
+fig = plot_regressor_model_ultils(pred=y_pred, target=y, title="Gráfico Regressão modelo Final", xlabel='Amostras', ylabel="AEP_MW")
 #Salvando o plot
 fig.savefig('reports/final/finalGraphic.png')
 print('Plot salvo em reports/final')
