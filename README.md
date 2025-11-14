@@ -8,7 +8,7 @@
 
 Este projeto tem como objetivo **prever o consumo de energia elétrica** nas horas e dias seguintes, utilizando **modelos de apredizado de máquina** aplicados a **séries temporais**.
 
-O conjunto de dados utilizados foi o [Hourly Energy Consumption (AEP)](https://www.kaggle.com/datasets/robikscube/hourly-energy-consumption/data?select=AEP_hourly.csv) disponibilizado no Kaggle, contendo leituras horárias de consumo de energia elétrica de uma região dos Estados Unidos por megawatts (MW). Utilizando o arquivo AEP_hourly.csv. 
+O conjunto de dados utilizados foi o [Hourly Energy Consumption (AEP)](https://www.kaggle.com/datasets/robikscube/hourly-energy-consumption/data?select=AEP_hourly.csv) disponibilizado no Kaggle, contendo leituras horárias de consumo de energia elétrica de uma região dos Estados Unidos por megawatts (MW). Utilizando o arquivo AEP_hourly.csv.
 
 *O [AEP (American Eletric Power)](https://en.wikipedia.org/wiki/American_Electric_Power) é uma companhia elétrica dos **Estados Unidos**, sendo a maior companhia do país atuando em 11 estados.*
 
@@ -47,8 +47,6 @@ O projeto foi dividido em etapas:
 
 ---
 
-
-
 ## Resultados Obtidos
 
 ---
@@ -80,7 +78,7 @@ EnergyForecast/
 |   |   |-- AEP_ready.csv
 |   |   |-- AEP_hourly_update.csv
 |
-|-- notebooks/
+|-- notebooks/			   
 |   |-- 01_exploracao.ipynb
 |   |-- 02_preprocessamento.ipynb
 |   |-- 03_modelagem.ipynb
