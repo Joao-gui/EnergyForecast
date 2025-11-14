@@ -40,10 +40,10 @@ O projeto foi dividido em etapas:
   - *O Processo de validação foi feito utilizando **K-fold Cross Validation***
 - **Avaliação das Métricas**
   - As ericas utilizadas foram:
-    - **R² (Coeficiente de Determinação)** - mede a qualidade do ajuste do modelo.
+    - **R² (Coeficiente de Determinação)** - mede a qualidade do ajuste do modelo, mais perto de 1 melhor o ajuste.
     - **MAE (Erro Absoluto Médio)** - média das diferenças absolutas entre valores reais e previstos.
-    - **MSE (Erro Quadrático Médio)** - penaliza grandes erros.
-    - **RMSE (Raiz do Erro Quadrático Médio)** - erro médio em mesma escala da variável alvo.
+    - **MSE (Erro Quadrático Médio)** - penaliza grandes erros, tornando mais sensíveis aos outliers.
+    - **RMSE (Raiz do Erro Quadrático Médio)** - sensível a grandes erros como o MSE, mas esta na mesma unidade que os dados.
 
 ---
 
@@ -102,3 +102,61 @@ EnergyForecast/
 |-- LICENSE
 |-- .gitignore
 ```
+
+---
+
+## Executando o Projeto
+
+---
+
+Clone o repositório:
+
+```
+git clone https://github.com/Joao-gui/EnergyForecast.git
+```
+
+em seguida entre na pasta do do projeto e crie um ambiente virtual (conda/venv).
+
+Após a criação do ambiente virtual para o projeto, instale os requerimentos necessários para a execução e exploração do projeto.
+
+```
+pip install -r requirements.txt
+```
+
+Após estas etapas o proejto estará pronto para executar ou caso queira explorar e fazer alterações.
+
+Para executar:
+
+```
+python main.py
+```
+
+O script fará o carregamento dos dados, executará as etapas de pré-processamento, modelagem e salvará os resultados em `reports/final/`.
+
+---
+
+## Licença
+
+---
+
+Este projeto está disponível sob a **MIT License** - veja o arquivo `LICENSE` para mais detalhes.
+
+---
+
+## Agradecimentos
+
+---
+
+Este é um projeto de estudo e exploração, foi feito para por em prática alguns conhecimentos adquiridos no curso de **Inteligência Artificial,** pela **UTFPR,** livros e artigos sobre o tema. Projeto simples porém com bastante conhecimento agregado, desde no processo de exploração, pré-processamento e modelagem.
+
+---
+
+## Autor
+
+---
+
+**João Guilherme Pellacani** - Engenheiro Elétrico com foco em Inteligência Artificial.
+
+[LinkedIn](https://www.linkedin.com/in/joao-guilherme-pellacani/) | [GitHub](https://github.com/Joao-gui)
+
+“A inteligência é o resultado de milhões de anos de evolução, que não podem ser computados em código binário” – **Miguel Nicolelis**
